@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Student Feedback</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #667eea, #764ba2);
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 40%;
+            margin: 50px auto;
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0px 8px 20px rgba(0,0,0,0.2);
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            font-size: 14px;
+        }
+
+        textarea {
+            resize: none;
+            height: 80px;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background: #667eea;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background: #5a67d8;
+        }
+
+        .feedback-section {
+            margin-top: 20px;
+        }
+
+        .feedback-card {
+            background: #f1f1f1;
+            padding: 10px;
+            margin-top: 10px;
+            border-radius: 8px;
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        .name {
+            font-weight: bold;
+            color: #333;
+        }
+
+        @keyframes fadeIn {
+            from {opacity: 0; transform: translateY(10px);}
+            to {opacity: 1; transform: translateY(0);}
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h2>🎓 Student Feedback Portal</h2>
+
+    <form method="POST" action="/submit" onsubmit="showAlert()">
+        <label>Name</label>
+        <input type="text" name="name" placeholder="Enter your name" required>
+
+        <label>Feedback</label>
+        <textarea name="message" placeholder="Write your feedback..." required></textarea>
+
+        <button type="submit">Submit Feedback</button>
+    </form>
+
+    <div class="feedback-section">
+        <h3>💬 Recent Feedback</h3>
+
+        {% for row in feedback %}
+            <div class="feedback-card">
+                <span class="name">{{ row[0] }}</span>: {{ row[1] }}
+            </div>
+        {% endfor %}
+    </div>
+
+</div>
+
+<script>
+function showAlert() {
+    alert("✅ Feedback submitted successfully!");
+}
+</script>
+
+</body>
+</html>
